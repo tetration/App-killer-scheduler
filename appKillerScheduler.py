@@ -4,7 +4,7 @@ import argparse
 
 #You can also use argument parsers to schedule app termination
 #In order to do that all you have to invoke this python script in the commandline the following way: python appKillerScheduler.py [NameofTheProgram] [HowManyMinutesYouWantToLetItRun]
-#example: python discord 
+#example: python mspaint 2
 
 
 parser = argparse.ArgumentParser()
@@ -22,7 +22,8 @@ def GetDateNowAndAfter(mins):
 
 def SetTimer(name):
     #Allows the user to pick how many minutes he wants the timer to last
-    if args.timeleft==None:
+    if args.timeleft==None:#checks if user used argument parsers
+        #If not asks user how many minutes he/she would like to to let the app run
         minutesAllowed = int(input("Type how many minutes you'd like to let the program "+name+" run before the script kills it: \n "))
     else:
         minutesAllowed = int(args.timeleft)
@@ -68,8 +69,9 @@ def killProcess_Win32(name):
 
 def main():
 
-    # Ask user for the name of process he/she wishes to terminate
-    if args.name==None:
+    
+    if args.name==None:#checks if user used argument parsers
+        # If not asks user for the name of process he/she wishes to terminate
         name = input("Enter process Name: ")
     else:
         name=args.name

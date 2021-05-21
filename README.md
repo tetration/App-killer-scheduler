@@ -28,10 +28,10 @@ In order to do that all you have to invoke this python script in the commandline
 example:
 
 ```bash
-    python appKillerScheduler.py discord 2
+    python appKillerScheduler.py mspaint 2
 ```
 
-This example schedules my script to terminate discord in 2.
+This example schedules my script to terminate mspaint.exe in 2 minutes.
 
 
 ###End
