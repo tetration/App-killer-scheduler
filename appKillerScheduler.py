@@ -1,6 +1,16 @@
 import time, os, signal
 import datetime
+import argparse
 
+#You can also use argument parsers to schedule app termination
+#In order to do that all you have to invoke this python script in the commandline the following way: python appKillerScheduler.py [NameofTheProgram] [HowManyMinutesYouWantToLetItRun]
+#example: python discord 
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("name", help="Type the name of the program you wish to terminate here")
+parser.add_argument("timeleft", help="Type how many minutes you'd like to let it run here")
+args = parser.parse_args()
 
 def GetDateNowAndAfter(mins):
     #Gets current time and calculates what time and date the timer will end
@@ -12,7 +22,11 @@ def GetDateNowAndAfter(mins):
 
 def SetTimer(name):
     #Allows the user to pick how many minutes he wants the timer to last
-    minutesAllowed = int(input("Type how many minutes you'd like to let the program "+name+" run before the script kills it: \n "))
+    if args.timeleft==None:
+        minutesAllowed = int(input("Type how many minutes you'd like to let the program "+name+" run before the script kills it: \n "))
+    else:
+        minutesAllowed = int(args.timeleft)
+
     mins = 0
     nowAndAfter= GetDateNowAndAfter(minutesAllowed)
     print("The timer started at:\n", nowAndAfter[0],"\n The timer will end at:\n",nowAndAfter[1])
@@ -53,9 +67,12 @@ def killProcess_Win32(name):
         os.system("TASKKILL /F /IM "+name+".exe")
 
 def main():
-      
+
     # Ask user for the name of process he/she wishes to terminate
-    name = input("Enter process Name: ")
+    if args.name==None:
+        name = input("Enter process Name: ")
+    else:
+        name=args.name
     try:
         currentOs=check_Os()
         SetTimer(name)

@@ -21,4 +21,17 @@ Input->Timer: 2:  User types how long the app can run(in minutes)
 Input->>Timer: 3: When the timer runs out the app is terminated
 ```
 
+## Invoking the program with arguments
+You can also use argument parsers to run this script and schedule an app to be killed by it. 
+In order to do that all you have to invoke this python script in the commandline the following way: python appKillerScheduler.py [NameofTheProgram] [HowManyMinutesYouWantToLetItRun]
+
+example:
+
+```bash
+    python appKillerScheduler.py discord 2
+```
+
+This example schedules my script to terminate discord in 2.
+
+
 ###End
